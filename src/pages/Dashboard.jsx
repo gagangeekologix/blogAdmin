@@ -10,7 +10,7 @@ import {
   CardBody,
   CardFooter,
   // HStack,
-  
+
   Button,
   // Avatar,
   Image,
@@ -24,6 +24,7 @@ import {
 } from "@chakra-ui/react"
 import axios from "axios";
 import { useState, useEffect } from "react";
+import { Container } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 
 
@@ -108,53 +109,55 @@ export default function Dashboard() {
   }
 
   return (
-    <SimpleGrid padding={50} spacing={10} minChildWidth={250}>
-    {tasks.map(results => (
-      <Card key={results._id}  boxShadow={"dark-lg"} height={"auto"} borderLef="8px" borderColor="#c5c5c5" bg="#ffffff">
-        <Box as="button" onClick={() => handleView(results._id)}>
-          <CardBody height={360}>
-            <Image
-              height={150}
-              width={300}
-              src={results.image}
-              alt="Green double couch with wooden legs"
-              borderRadius="lg"
-            />
-            <Stack mt="4" spacing="3">
-              <Heading textAlign="center" size="sm">
-                {results.title.slice(0, 50)}
-              </Heading>
-              <Text size="sm" textAlign="justify" dangerouslySetInnerHTML={{ __html: results.description.slice(0, 100) }}>
-                {/* {results.description.slice(0, 130)} */}
-              </Text>
-            </Stack>
-          </CardBody>
-        </Box>
-        
-        {token && (
-          <CardFooter>
-            <ButtonGroup>
-              <Button variant="ghost" colorScheme="red" onClick={() => handleClick(results._id)}>
-                DELETE
-              </Button>
-              <Button variant="ghost" colorScheme="blue" onClick={() => handleEdit(results._id)}>
-                Edit
-              </Button>
-            </ButtonGroup>
-          </CardFooter>
-        )}
-        <Box position="absolute" top="-5" right="-3">
-          <Badge colorScheme="blue">
-            {results.createdAt.slice(0, 10) === new Date().toISOString().slice(0, 10)
-              ? "Today"
-              : results.createdAt.slice(0, 10) === new Date(new Date().getTime() - 86400000).toISOString().slice(0, 10)
-                ? "Yesterday"
-                : results.createdAt.slice(0, 10)}
-          </Badge>
-        </Box>
-      </Card>
-    ))}
-  </SimpleGrid>
-  
+    <Container size={'xl'}>
+      <SimpleGrid padding={50} spacing={10} minChildWidth={250}>
+        {tasks.map(results => (
+          <Card key={results._id} boxShadow={"dark-lg"} height={"auto"} borderLef="8px" borderColor="#c5c5c5" bg="#ffffff">
+            <Box as="button" onClick={() => handleView(results._id)}>
+              <CardBody height={360}>
+                <Image
+                  height={150}
+                  width={300}
+                  src={results.image}
+                  alt="Green double couch with wooden legs"
+                  borderRadius="lg"
+                />
+                <Stack mt="4" spacing="3">
+                  <Heading textAlign="center" size="sm">
+                    {results.title.slice(0, 50)}
+                  </Heading>
+                  <Text size="sm" textAlign="justify" dangerouslySetInnerHTML={{ __html: results.description.slice(0, 100) }}>
+                    {/* {results.description.slice(0, 130)} */}
+                  </Text>
+                </Stack>
+              </CardBody>
+            </Box>
+
+            {token && (
+              <CardFooter>
+                <ButtonGroup>
+                  <Button variant="ghost" colorScheme="red" onClick={() => handleClick(results._id)}>
+                    DELETE
+                  </Button>
+                  <Button variant="ghost" colorScheme="blue" onClick={() => handleEdit(results._id)}>
+                    Edit
+                  </Button>
+                </ButtonGroup>
+              </CardFooter>
+            )}
+            <Box position="absolute" top="-5" right="-3">
+              <Badge colorScheme="blue">
+                {results.createdAt.slice(0, 10) === new Date().toISOString().slice(0, 10)
+                  ? "Today"
+                  : results.createdAt.slice(0, 10) === new Date(new Date().getTime() - 86400000).toISOString().slice(0, 10)
+                    ? "Yesterday"
+                    : results.createdAt.slice(0, 10)}
+              </Badge>
+            </Box>
+          </Card>
+        ))}
+      </SimpleGrid>
+    </Container>
+
   )
 }

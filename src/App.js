@@ -15,6 +15,7 @@ import Profile from './pages/Profile';
 // import Question from './pages/Question';
 // import CreateQuestion from './pages/CreateQuestion';
 // import Create from './pages/CreateQuiz';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 import Login from './pages/login';
 import Register from './pages/Register';

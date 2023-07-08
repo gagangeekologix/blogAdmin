@@ -1,7 +1,8 @@
 import { useRef, useState } from 'react';
-import { Box, Heading, FormControl, FormLabel, Input, FormHelperText,  Button, Flex, Spinner } from '@chakra-ui/react';
+import { Box, Heading, FormControl, FormLabel, Input, FormHelperText, Button, Flex, Spinner, CardBody } from '@chakra-ui/react';
 import { useNavigate } from 'react-router-dom';
 import JoditEditor from 'jodit-react';
+import { Card, Container } from 'react-bootstrap';
 
 export default function Create() {
   const [title, setTitle] = useState('');
@@ -41,54 +42,55 @@ export default function Create() {
       <Flex align="center" justify="center" height="100vh">
         <Spinner size="xl" />
       </Flex>
-    );  }
-
-    return (
-      <Flex mt={-100} align="center" justify="center" height="100vh">
-        <Box maxW="480px" p={4}>
-          <Heading textAlign="center" mb={4}>
-            Create Blog
-          </Heading>
-          <form onSubmit={handleSubmit}>
-            <FormControl isRequired mb={4}>
-              <FormLabel>Blog Name:</FormLabel>
-              <Input
-                type="text"
-                value={title}
-                name="title"
-                onChange={(e) => setTitle(e.target.value)}
-              />
-              <FormHelperText>Enter a descriptive Blog name.</FormHelperText>
-            </FormControl>
-    
-            <FormControl mb={4}>
-              <FormLabel>Blog Image URL</FormLabel>
-              <Input
-                type="text"
-                placeholder="Enter Blog Image URL..."
-                name="Image"
-                value={image}
-                onChange={(e) => setImage(e.target.value)}
-              />
-            </FormControl>
-    
-            <FormControl mb={4}>
-              <FormLabel>Blog Description:</FormLabel>
-              <JoditEditor
-                ref={editor}
-                value={description}
-                onChange={(e) => setDescription(e)}
-              />
-            </FormControl>
-    
-            <Button type="submit" colorScheme="blackAlpha" isFullWidth>
-              Submit
-            </Button>
-          </form>
-        </Box>
-      </Flex>
     );
-    
+  }
+
+  return (
+    <Container>
+      <Card className='p-5 mt-5'>
+        <h2 className='text-center fw-bold mb-5'>
+          Create Blog
+        </h2>
+        <form onSubmit={handleSubmit}>
+          <FormControl isRequired mb={4}>
+            <FormLabel>Blog Title:</FormLabel>
+            <Input
+              type="text"
+              value={title}
+              name="title"
+              placeholder='Enter Blog title here'
+              onChange={(e) => setTitle(e.target.value)}
+            />
+          </FormControl>
+
+          <FormControl mb={4}>
+            <FormLabel>Blog Image URL</FormLabel>
+            <Input
+              type="text"
+              placeholder="Enter Blog Image URL..."
+              name="Image"
+              value={image}
+              onChange={(e) => setImage(e.target.value)}
+            />
+          </FormControl>
+
+          <FormControl mb={4}>
+            <FormLabel>Blog Content:</FormLabel>
+            <JoditEditor
+              ref={editor}
+              value={description}
+              onChange={(e) => setDescription(e)}
+            />
+          </FormControl>
+
+          <Button type="submit" className="bg-success text-white mt-3">
+            Create Blog
+          </Button>
+        </form>
+      </Card>
+    </Container>
+  );
+
 }
 
 
