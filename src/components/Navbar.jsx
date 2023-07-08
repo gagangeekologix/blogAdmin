@@ -1,5 +1,5 @@
 import { UnlockIcon } from "@chakra-ui/icons";
-import { Flex, Heading, Button, Spacer, HStack, useToast, AvatarBadge, Avatar, Text } from "@chakra-ui/react";
+import {  Heading, Button, useToast, AvatarBadge, Avatar, Text } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import { Col, Container, Row, Stack } from "react-bootstrap";
 import { Link } from "react-router-dom";

@@ -18,7 +18,7 @@ import Profile from './pages/Profile';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import Login from './pages/login';
-import Register from './pages/Register';
+// import Register from './pages/Register';
 import Edit from './pages/EditBlog';
 import ViewBlog from './pages/ViewBlog';
 import Create from './pages/CreateBlog';
@@ -37,7 +37,7 @@ const router = createBrowserRouter(
       <Route exact path="profile" element={<Profile />} />
       <Route exact path="create" element={<Create />} />
       <Route exact path="login" element={<Login />} />
-      <Route exact path="register" element={<Register />} />
+      {/* <Route exact path="register" element={<Register />} /> */}
     </Route>
   )
 )
